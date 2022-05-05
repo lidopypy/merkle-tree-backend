@@ -9,12 +9,12 @@ const Serie = require("./models/serie");
 const keccak256 = require("keccak256");
 const { MerkleTree } = require("merkletreejs");
 const keyList = require("./series.json");
-// const cors = require("cors");
-// const corsOptions = {
-//   origin: "http://localhost:3000",
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200,
-// };
+const cors = require("cors");
+const corsOptions = {
+  origin: "https://test-soul-nft.netlify.app/Mint",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
 
 //MerkleProof function
 function MerkleProof(series) {
@@ -28,7 +28,7 @@ function MerkleProof(series) {
 }
 
 //Middleware
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); // 處理get,post,... request 取得 req.body
