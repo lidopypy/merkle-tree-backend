@@ -10,11 +10,11 @@ const keccak256 = require("keccak256");
 const { MerkleTree } = require("merkletreejs");
 const keyList = require("./series.json");
 const cors = require("cors");
-const corsOptions = {
-  origin: "https://test-soul-nft.netlify.app/Mint",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "https://test-soul-nft.netlify.app/Mint",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
 
 //MerkleProof function
 function MerkleProof(series) {
@@ -28,7 +28,7 @@ function MerkleProof(series) {
 }
 
 //Middleware
-app.use(cors(corsOptions));
+// app.use(cors());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); // 處理get,post,... request 取得 req.body
@@ -48,7 +48,7 @@ mongoose
     console.log(err);
   });
 
-app.post("/:serie", (req, res) => {
+app.post("/:serie", cors(), (req, res) => {
   let hashSerie = keccak256(req.params.serie).toString("hex");
   Serie.findOne({ serie: hashSerie })
     .then((data) => {
