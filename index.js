@@ -28,7 +28,7 @@ function MerkleProof(series) {
 }
 
 //Middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); // 處理get,post,... request 取得 req.body
